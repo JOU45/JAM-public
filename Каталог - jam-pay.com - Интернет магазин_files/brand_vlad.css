@@ -1,0 +1,44 @@
+.modal-title.modal-title-change-color{
+    color:white !important;
+}
+a{
+    transition: 0.1s;
+    color:white;
+}
+.brand_nav.flex.correcter-640px>a:hover{
+    
+    text-decoration: none;
+}
+a:hover{
+    color:#565656;
+}
+.button_submit_linza{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: -2px;
+    left: 30%;
+}
+.close>svg{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 20%;
+    left: 96%;
+}
+@media (min-width:600px) and (max-width:1000px){
+    .brand_nav.flex.correcter-640px>a{
+        padding: 2px;
+    }
+    .close>svg{
+        left: 94%;
+    }
+}
+@media (max-width:600px){
+    .brand_nav.flex.correcter-640px>a{
+        padding: 2px;
+    }
+    .close>svg{
+        left: 92%;
+    }
+}
