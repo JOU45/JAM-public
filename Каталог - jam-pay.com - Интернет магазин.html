@@ -29,7 +29,7 @@
   <script type="text/javascript" src="./Каталог - jam-pay.com - Интернет магазин_files/main_maks.js.Без названия"></script>
   <script type="text/javascript" src="./Каталог - jam-pay.com - Интернет магазин_files/cart.js.Без названия"></script>
 
-  <!-- <link rel="stylesheet" href="/css/main_fonts.css?v=04" /> -->
+  <!-- <link rel="stylesheet" href="/css/main_fonts.css?v=05" /> -->
 
   <!-- <link rel="stylesheet" href="/css/main.min.css?v=2" /> -->
   <link rel="stylesheet" href="./Каталог - jam-pay.com - Интернет магазин_files/main_tax.css">
@@ -50,30 +50,30 @@
         <img class="header_stars_img header-logo_2 d-n-mob-span" src="./Каталог - jam-pay.com - Интернет магазин_files/header_stars.svg" alt="Интернет-площадка JamPay" title="Интернет-магазин – https://jam-pay.com:443">
         <div class="header base_style">
           <div class="search">
-            <div class="search-img" onclick="return show_search_form(this);">
-              <p class="text_search">Search...</p>
-            </div>
+
+            <!-- <script src="./Каталог - jam-pay.com - Интернет магазин_files/repair_search.js"></script> -->
             <form class="main_search_form" action="https://jam-pay.com/ru/catalog" method="GET">
-              <input type="search" class="form-input search-input my_input" onblur="hide_search_if_no_val(this);" value="" id="qSearchFormText2" name="search">
+              <input type="search" id="search-img" class="form-input  search_input_have_val my_input" onblur="hide_search_if_no_val(this);" value="" id="qSearchFormText2" placeholder="Search..." name="search">
               <button type="submit" class="my_button">
                 <svg class="img_button_search_after" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><line x1="30.14" y1="29.86" x2="31.6" y2="31.19" style="fill:none;stroke:#ffffff;stroke-miterlimit:10"></line><polygon points="40.24 38.17 38.41 40 30.87 32.48 32.7 30.65 40.24 38.17" style="fill:none;stroke:#ffffff;stroke-miterlimit:10"></polygon><circle cx="21.37" cy="21.61" r="11.61" style="fill:none;stroke:#ffffff;stroke-miterlimit:10"></circle></svg>
               </button>
             </form>
+          
           </div>
           <nav class="navbar">
             <ul>
-              <li id="void_li" class="nav_menu nav_active_switcher" onclick="return nav_active_switcher_clicked(this);">
+              <li class="nav_menu nav_active_switcher" onclick="return nav_active_switcher_clicked(this);">
                 <div class="submenu">
                   <div class="cross" onclick="return nav_active_switcher_close(this);">
-                    <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><circle cx="17.75" cy="18.63" r="15" style="fill:none;stroke:#ffffff;stroke-miterlimit:10"></circle><line x1="12.75" y1="13.62" x2="22.75" y2="23.62" style="fill:none;stroke:#ffffff;stroke-miterlimit:10"></line><line x1="12.75" y1="23.62" x2="22.75" y2="13.62" style="fill:none;stroke:#ffffff;stroke-miterlimit:10"></line></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><circle cx="17.75" cy="18.63" r="15" style="fill:none;stroke-miterlimit:10"></circle><line x1="12.75" y1="13.62" x2="22.75" y2="23.62" style="fill:none;stroke-miterlimit:10"></line><line x1="12.75" y1="23.62" x2="22.75" y2="13.62" style="fill:none;stroke-miterlimit:10"></line></svg>
                   </div>
                   <div class="submenu_li hidden">
-                    <a href="https://jam-pay.com/ru/s/service">
+                    <a href="https://jam-pay.com/ru/s/service" onclick="event.stopPropagation();">
                       ОБСЛУЖИВАНИЕ КЛИЕНТОВ
                     </a>
                   </div>
                   <div class="submenu_li hidden">
-                    <a href="https://jam-pay.com/ru/s/market">
+                    <a href="https://jam-pay.com/ru/s/market" onclick="event.stopPropagation();">
                       ПРОДАТЬ С НАМИ
                     </a>
                   </div>
@@ -81,13 +81,13 @@
                 <svg style="left: -3% ;" class="svg_hover_active" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><circle cx="17.5" cy="17.5" r="15" style="fill:none;stroke-miterlimit:10"></circle><line x1="12.29" y1="17.49" x2="22.71" y2="17.49" style="fill:none;stroke-miterlimit:10"></line><line x1="12.29" y1="21.43" x2="22.71" y2="21.43" style="fill:none;stroke-miterlimit:10"></line><line x1="12.29" y1="13.62" x2="22.71" y2="13.62" style="fill:none;stroke-miterlimit:10"></line></svg>
                 <span id="void_li">МЕНЮ</span>
               </li>
-              <li id="void_li">
+              <li>
                 <a href="https://jam-pay.com/ru/catalog" class="margin4 svg_hover_active">
                   <svg class="svg_hover_active" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><path d="M16.7,32.5a16.45,16.45,0,0,1,15.35-3.77" style="fill:none;stroke-miterlimit:10"></path><path d="M17.91,32.5A16.43,16.43,0,0,0,2.57,28.73" style="fill:none;stroke-miterlimit:10"></path><path d="M17,7.77A19.48,19.48,0,0,1,35.18,3.29" style="fill:none;stroke-miterlimit:10"></path><path d="M18,7.77A19.51,19.51,0,0,0-.26,3.29" style="fill:none;stroke-miterlimit:10"></path><line x1="0.34" y1="2.5" x2="3.14" y2="28.01" style="fill:none;stroke-miterlimit:10"></line><line x1="34.66" y1="2.62" x2="31.44" y2="27.89" style="fill:none;stroke-miterlimit:10"></line><line x1="17.5" y1="7.5" x2="17.31" y2="31.29" style="fill:none;stroke-miterlimit:10"></line></svg>
                   <span class="text_above_submenu" id="void_li">КАТАЛОГ</span>
                 </a>
               </li>
-              <li id="void_li">
+              <li>
                 <!--noindex-->
                   <a href="https://jam-pay.com/ru/s/brands" class="margin4 svg_hover_active" onclick="return show_in_modal_link(this, &#39;brands_list transparent_blue_modal&#39;);">
                     <svg class="svg_hover_active" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><circle cx="17.5" cy="17.5" r="15" style="fill:none;stroke-miterlimit:10"></circle><path d="M10.86,14H7.78V12.89h7.49V14H12.18v9H10.86Z" style="fill:#ffffff"></path><path d="M24.91,18.56c-.07-1.41-.16-3.11-.15-4.37h0c-.35,1.19-.77,2.45-1.28,3.84l-1.78,4.91h-1L19,18.12c-.48-1.42-.88-2.73-1.17-3.93h0c0,1.26-.1,3-.19,4.47L17.37,23H16.12l.71-10.11h1.66l1.73,4.89c.42,1.24.76,2.35,1,3.4h0c.26-1,.62-2.13,1.07-3.4l1.8-4.89h1.66L26.44,23H25.17Z" style="fill:#ffffff"></path></svg>
@@ -95,10 +95,10 @@
                   </a>
                 <!--/noindex-->
               </li>
-              <li id="void_li" class="nav_language nav_active_switcher" onclick="return nav_active_switcher_clicked(this);">
+              <li class="nav_language nav_active_switcher" onclick="return nav_active_switcher_clicked(this);">
                 <div id="submenu_language" class="submenu">
                   <div class="cross" id="cross_lang" onclick="return nav_active_switcher_close(this);">
-                    <svg data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><circle cx="17.75" cy="18.63" r="15" style="fill:none;stroke:#ffffff;stroke-miterlimit:10"></circle><line x1="12.75" y1="13.62" x2="22.75" y2="23.62" style="fill:none;stroke:#ffffff;stroke-miterlimit:10"></line><line x1="12.75" y1="23.62" x2="22.75" y2="13.62" style="fill:none;stroke:#ffffff;stroke-miterlimit:10"></line></svg>
+                    <svg data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><circle cx="17.75" cy="18.63" r="15" style="fill:none;stroke-miterlimit:10"></circle><line x1="12.75" y1="13.62" x2="22.75" y2="23.62" style="fill:none;stroke-miterlimit:10"></line><line x1="12.75" y1="23.62" x2="22.75" y2="13.62" style="fill:none;stroke-miterlimit:10"></line></svg>
                   </div>
                   <div class="submenu_li">English</div>
                   <div class="submenu_li">Русский</div>
@@ -107,10 +107,10 @@
                 <svg class="svg_hover_active" style="left: -5% ;" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><path d="M23.94,11.12c.06.28-.06-.08,0,.28a20.54,20.54,0,0,1,.58,5.88c0,8.35-3.3,15.11-7.37,15.11-2.3,0-4.36-2.17-5.71-5.57l-.07-.18" style="fill:none;stroke-miterlimit:10"></path><path d="M10.82,24.32c-.08-.33-.07-.34-.14-.69a29.87,29.87,0,0,1-.57-5.83c0-8.36,3.3-15.13,7.37-15.13,2.34,0,4.43,2.25,5.78,5.76,0,.09.07.17.1.26" style="fill:none;stroke-miterlimit:10"></path><path d="M11.44,24.29c-5.23-1.19-8.83-3.71-8.83-6.62,0-4.07,7-7.37,15.69-7.37.87,0,1.73,0,2.56.1" style="fill:none;stroke-miterlimit:10"></path><path d="M23.38,11c.16,0,.64.24.8.27,5,1.24,8.35,3.69,8.35,6.52,0,4.06-7,7.36-15.68,7.36-.88,0-1.73,0-2.57-.1" style="fill:none;stroke-miterlimit:10"></path><circle cx="17.47" cy="17.5" r="15" style="fill:none;stroke-miterlimit:10"></circle></svg>
                 <span id="void_li">RU</span>
               </li>
-              <li id="void_li" class="nav_location nav_active_switcher" onclick="return nav_active_switcher_clicked(this);">
+              <li class="nav_location nav_active_switcher" onclick="return nav_active_switcher_clicked(this);">
                 <div id="submenu_location" class="submenu">
                   <div class="cross" id="cross_locat" onclick="return nav_active_switcher_close(this);">
-                    <svg id="" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><circle cx="17.75" cy="18.63" r="15" style="fill:none;stroke:#ffffff;stroke-miterlimit:10"></circle><line x1="12.75" y1="13.62" x2="22.75" y2="23.62" style="fill:none;stroke:#ffffff;stroke-miterlimit:10"></line><line x1="12.75" y1="23.62" x2="22.75" y2="13.62" style="fill:none;stroke:#ffffff;stroke-miterlimit:10"></line></svg>
+                    <svg id="" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><circle cx="17.75" cy="18.63" r="15" style="fill:none;stroke-miterlimit:10"></circle><line x1="12.75" y1="13.62" x2="22.75" y2="23.62" style="fill:none;stroke-miterlimit:10"></line><line x1="12.75" y1="23.62" x2="22.75" y2="13.62" style="fill:none;stroke-miterlimit:10"></line></svg>
                   </div>
                   <div class="submenu_li">
                     Ukraine
@@ -137,7 +137,7 @@
               <li id="void_li">
                 <!--noindex-->
                   <a class="svg_hover_active" rel="nofollow" href="https://trade.jam-pay.com/ru/profile/dashboard">
-                    <svg class="svg_hover_active" style="left: 6% ;"  data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><ellipse cx="17.54" cy="10.19" rx="7.89" ry="7.69" style="fill:none;stroke-linejoin:round"></ellipse><path d="M17.54,32.5H7.32L4.91,29.36V21.73l6.32-3.08" style="fill:none;stroke-linejoin:round"></path><path d="M17.46,32.5H27.68l2.41-3.14V21.73l-6.32-3.08" style="fill:none;stroke-linejoin:round"></path></svg>
+                    <svg class="svg_hover_active" style="left: 6% ;" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><ellipse cx="17.54" cy="10.19" rx="7.89" ry="7.69" style="fill:none;stroke-linejoin:round"></ellipse><path d="M17.54,32.5H7.32L4.91,29.36V21.73l6.32-3.08" style="fill:none;stroke-linejoin:round"></path><path d="M17.46,32.5H27.68l2.41-3.14V21.73l-6.32-3.08" style="fill:none;stroke-linejoin:round"></path></svg>
                     <span class="text_above_submenu" id="void_li">0</span>
                   </a>
                 <!--/noindex-->
@@ -146,14 +146,14 @@
                 <!--noindex-->
                   <a class="margin4 svg_hover_active" rel="nofollow" href="https://trade.jam-pay.com/ru/cart" title="Корзина">
                     <svg class="svg_hover_active" style="left: -7% ;" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><circle cx="14.16" cy="27.68" r="4.7" style="fill:none;stroke-miterlimit:10"></circle><polyline points="31.32 20.17 34.79 7 7.09 7" style="fill:none;stroke-miterlimit:10"></polyline><polyline points="0.21 2.5 6.55 6.19 7.09 7 11.95 19.73 31.95 19.67" style="fill:none;stroke-miterlimit:10"></polyline><circle cx="29.14" cy="27.8" r="4.7" style="fill:none;stroke-miterlimit:10"></circle></svg>
-                    <span class="text_above_submenu" id="void_li">0</span>
+                    <span class="text_above_submenu">0</span>
                   </a>
                 <!--/noindex-->
               </li>
             </ul>
           </nav>
         </div>
-      </div>  
+      </div>
     </header>
     <div class="page-container container max_page_width_fixed">
       <div class="col-12 breadcrumbs_block">
@@ -184,7 +184,7 @@
         <div><a href="" onclick="return false;"><img src="/fimg/slider_1/2.jpg" alt="img"></a></div>
         <div><a href="" onclick="return false;"><img src="/fimg/slider_1/3.jpg" alt="img"></a></div>
         <div><a href="" onclick="return false;"><img src="/fimg/slider_1/4.jpg" alt="img"></a></div> -->
-      <div class="owl-stage-outer"><div class="owl-stage" style="transition: all 1.5s ease 0s; width: 15200px; transform: translate3d(-9500px, 0px, 0px);"><div class="owl-item cloned" style="width: 1900px;"><div title="" item_id="20">
+      <div class="owl-stage-outer"><div class="owl-stage" style="transition: all 1.5s ease 0s; width: 15200px; transform: translate3d(-7600px, 0px, 0px);"><div class="owl-item cloned" style="width: 1900px;"><div title="" item_id="20">
         <a href="https://jam-pay.com/#">
           <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000020.png" alt="">
         </a>
@@ -200,11 +200,11 @@
         <a href="http://jpay.fastopt.com.ua/ru/product/aktivnaja_dvuhpolosnaja_akusticheskaja_sistema_4all_audio_4pro15_dsp_4pro_15_dsp_24906.html">
           <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000019.png" alt="">
         </a>
-      </div></div><div class="owl-item" style="width: 1900px;"><div title="" item_id="20">
+      </div></div><div class="owl-item active center" style="width: 1900px;"><div title="" item_id="20">
         <a href="https://jam-pay.com/#">
           <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000020.png" alt="">
         </a>
-      </div></div><div class="owl-item active center" style="width: 1900px;"><div title="" item_id="21">
+      </div></div><div class="owl-item" style="width: 1900px;"><div title="" item_id="21">
         <a href="https://jam-pay.com/#">
           <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000021.jpg" alt="">
         </a>
@@ -240,7 +240,7 @@
 
 
 
-<div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1428px, 0px, 0px); transition: all 1.5s ease 0s; width: 4692px;"><div class="owl-item cloned" style="width: 184px; margin-right: 20px;"><div title="" item_id="6">
+<div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-2652px, 0px, 0px); transition: all 1.5s ease 0s; width: 4692px;"><div class="owl-item cloned" style="width: 184px; margin-right: 20px;"><div title="" item_id="6">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000006.jpg" alt="">
           </a>
@@ -268,23 +268,23 @@
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000001.jpg" alt="">
           </a>
-        </div></div><div class="owl-item active" style="width: 184px; margin-right: 20px;"><div title="" item_id="2">
+        </div></div><div class="owl-item" style="width: 184px; margin-right: 20px;"><div title="" item_id="2">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000002.jpg" alt="">
           </a>
-        </div></div><div class="owl-item active" style="width: 184px; margin-right: 20px;"><div title="" item_id="3">
+        </div></div><div class="owl-item" style="width: 184px; margin-right: 20px;"><div title="" item_id="3">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000003.jpg" alt="">
           </a>
-        </div></div><div class="owl-item active" style="width: 184px; margin-right: 20px;"><div title="" item_id="4">
+        </div></div><div class="owl-item" style="width: 184px; margin-right: 20px;"><div title="" item_id="4">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000004.jpg" alt="">
           </a>
-        </div></div><div class="owl-item active" style="width: 184px; margin-right: 20px;"><div title="" item_id="5">
+        </div></div><div class="owl-item" style="width: 184px; margin-right: 20px;"><div title="" item_id="5">
           <a href="http://jpay.fastopt.com.ua/ru/catalog?r1=1603-1604&amp;">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000005.jpg" alt="">
           </a>
-        </div></div><div class="owl-item active" style="width: 184px; margin-right: 20px;"><div title="" item_id="6">
+        </div></div><div class="owl-item" style="width: 184px; margin-right: 20px;"><div title="" item_id="6">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000006.jpg" alt="">
           </a>
@@ -292,23 +292,23 @@
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000007.jpg" alt="">
           </a>
-        </div></div><div class="owl-item" style="width: 184px; margin-right: 20px;"><div title="" item_id="8">
+        </div></div><div class="owl-item active" style="width: 184px; margin-right: 20px;"><div title="" item_id="8">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000008.jpg" alt="">
           </a>
-        </div></div><div class="owl-item" style="width: 184px; margin-right: 20px;"><div title="" item_id="9">
+        </div></div><div class="owl-item active" style="width: 184px; margin-right: 20px;"><div title="" item_id="9">
           <a href="http://jpay.fastopt.com.ua/ru/catalog?r1=1601-1602&amp;">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000009.jpg" alt="">
           </a>
-        </div></div><div class="owl-item" style="width: 184px; margin-right: 20px;"><div title="" item_id="10">
+        </div></div><div class="owl-item active" style="width: 184px; margin-right: 20px;"><div title="" item_id="10">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000010.jpg" alt="">
           </a>
-        </div></div><div class="owl-item" style="width: 184px; margin-right: 20px;"><div title="" item_id="22">
+        </div></div><div class="owl-item active" style="width: 184px; margin-right: 20px;"><div title="" item_id="22">
           <a href="http://jpay.fastopt.com.ua/ru/catalog?r1=1596-1600&amp;">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000022.jpg" alt="">
           </a>
-        </div></div><div class="owl-item cloned" style="width: 184px; margin-right: 20px;"><div title="" item_id="1">
+        </div></div><div class="owl-item cloned active" style="width: 184px; margin-right: 20px;"><div title="" item_id="1">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000001.jpg" alt="">
           </a>
@@ -340,7 +340,7 @@
 
 
 
-<div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(2040px, 0px, 0px); transition: all 1.5s ease 0s; width: 3468px;"><div class="owl-item cloned" style="width: 184px; margin-left: 20px;"><div title="" item_id="13">
+<div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(1224px, 0px, 0px); transition: all 1.5s ease 0s; width: 3468px;"><div class="owl-item cloned" style="width: 184px; margin-left: 20px;"><div title="" item_id="13">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000013.jpg" alt="">
           </a>
@@ -364,19 +364,19 @@
           <a href="http://jpay.fastopt.com.ua/ru/catalog?r1=1611-1613&amp;">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000011.jpg" alt="">
           </a>
-        </div></div><div class="owl-item" style="width: 184px; margin-left: 20px;"><div title="" item_id="12">
+        </div></div><div class="owl-item active" style="width: 184px; margin-left: 20px;"><div title="" item_id="12">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000012.jpg" alt="">
           </a>
-        </div></div><div class="owl-item" style="width: 184px; margin-left: 20px;"><div title="" item_id="13">
+        </div></div><div class="owl-item active" style="width: 184px; margin-left: 20px;"><div title="" item_id="13">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000013.jpg" alt="">
           </a>
-        </div></div><div class="owl-item" style="width: 184px; margin-left: 20px;"><div title="" item_id="14">
+        </div></div><div class="owl-item active" style="width: 184px; margin-left: 20px;"><div title="" item_id="14">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000014.jpg" alt="">
           </a>
-        </div></div><div class="owl-item" style="width: 184px; margin-left: 20px;"><div title="" item_id="15">
+        </div></div><div class="owl-item active" style="width: 184px; margin-left: 20px;"><div title="" item_id="15">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000015.jpg" alt="">
           </a>
@@ -384,19 +384,19 @@
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000016.jpg" alt="">
           </a>
-        </div></div><div class="owl-item active" style="width: 184px; margin-left: 20px;"><div title="" item_id="17">
+        </div></div><div class="owl-item" style="width: 184px; margin-left: 20px;"><div title="" item_id="17">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000017.jpg" alt="">
           </a>
-        </div></div><div class="owl-item cloned active" style="width: 184px; margin-left: 20px;"><div title="" item_id="11">
+        </div></div><div class="owl-item cloned" style="width: 184px; margin-left: 20px;"><div title="" item_id="11">
           <a href="http://jpay.fastopt.com.ua/ru/catalog?r1=1611-1613&amp;">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000011.jpg" alt="">
           </a>
-        </div></div><div class="owl-item cloned active" style="width: 184px; margin-left: 20px;"><div title="" item_id="12">
+        </div></div><div class="owl-item cloned" style="width: 184px; margin-left: 20px;"><div title="" item_id="12">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000012.jpg" alt="">
           </a>
-        </div></div><div class="owl-item cloned active" style="width: 184px; margin-left: 20px;"><div title="" item_id="13">
+        </div></div><div class="owl-item cloned" style="width: 184px; margin-left: 20px;"><div title="" item_id="13">
           <a href="https://jam-pay.com/#">
             <img src="./Каталог - jam-pay.com - Интернет магазин_files/00000013.jpg" alt="">
           </a>
@@ -467,7 +467,7 @@
   
 
 
-      <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1493px, 0px, 0px); transition: all 1.5s ease 0s; width: 4694px;"><div class="owl-item cloned" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24978" liked="0">
+      <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-2773px, 0px, 0px); transition: all 1.5s ease 0s; width: 4694px;"><div class="owl-item cloned" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24978" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
         <div class="slider_product_img">
@@ -523,20 +523,6 @@
         <span class="price_conv_val_block"><span class="converted_val_span">100.24</span>&nbsp;<span class="price_currency">₴</span></span>
       </div>
     </div>
-  </div></div><div class="owl-item cloned" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24975" liked="0">
-    <div class="slider_item">
-      <div class="slider_product_img_block">
-        <div class="slider_product_img">
-          <img src="./Каталог - jam-pay.com - Интернет магазин_files/00049477_sm.jpg" alt="">
-        </div>
-      </div>
-      <div class="slider_item_title">
-        <a href="https://jam-pay.com/ru/product/mukaltin_sirop_po_200_ml_vo_flakonah_485402_24975.html">Мукалтин сироп по 200 мл во флаконах (485402)</a>
-      </div>
-      <div class="slider_item_price">
-        <span class="price_conv_val_block"><span class="converted_val_span">84.00</span>&nbsp;<span class="price_currency">₴</span></span>
-      </div>
-    </div>
   </div></div><div class="owl-item cloned" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24971" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
@@ -549,6 +535,20 @@
       </div>
       <div class="slider_item_price">
         <span class="price_conv_val_block"><span class="converted_val_span">2660004.00</span>&nbsp;<span class="price_currency">₴</span></span>
+      </div>
+    </div>
+  </div></div><div class="owl-item cloned" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24975" liked="0">
+    <div class="slider_item">
+      <div class="slider_product_img_block">
+        <div class="slider_product_img">
+          <img src="./Каталог - jam-pay.com - Интернет магазин_files/00049477_sm.jpg" alt="">
+        </div>
+      </div>
+      <div class="slider_item_title">
+        <a href="https://jam-pay.com/ru/product/mukaltin_sirop_po_200_ml_vo_flakonah_485402_24975.html">Мукалтин сироп по 200 мл во флаконах (485402)</a>
+      </div>
+      <div class="slider_item_price">
+        <span class="price_conv_val_block"><span class="converted_val_span">84.00</span>&nbsp;<span class="price_currency">₴</span></span>
       </div>
     </div>
   </div></div><div class="owl-item" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24979" liked="0">
@@ -565,7 +565,7 @@
         <span class="price_conv_val_block"><span class="converted_val_span">248000.00</span>&nbsp;<span class="price_currency">₴</span></span>
       </div>
     </div>
-  </div></div><div class="owl-item active" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24977" liked="0">
+  </div></div><div class="owl-item" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24977" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
         <div class="slider_product_img">
@@ -579,7 +579,7 @@
         <span class="price_conv_val_block"><span class="converted_val_span">1.68</span>&nbsp;<span class="price_currency">₴</span></span>
       </div>
     </div>
-  </div></div><div class="owl-item active" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24906" liked="0">
+  </div></div><div class="owl-item" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24906" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
         <div class="slider_product_img">
@@ -593,7 +593,7 @@
         <span class="price_conv_val_block"><span class="converted_val_span">13671.00</span>&nbsp;<span class="price_currency">₴</span></span>
       </div>
     </div>
-  </div></div><div class="owl-item active" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24970" liked="0">
+  </div></div><div class="owl-item" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24970" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
         <div class="slider_product_img">
@@ -607,7 +607,7 @@
         <span class="price_conv_val_block"><span class="converted_val_span">3360.00</span>&nbsp;<span class="price_currency">₴</span></span>
       </div>
     </div>
-  </div></div><div class="owl-item active" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24978" liked="0">
+  </div></div><div class="owl-item" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24978" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
         <div class="slider_product_img">
@@ -621,7 +621,7 @@
         <span class="price_conv_val_block"><span class="converted_val_span">165.00</span>&nbsp;<span class="price_currency">₴</span></span>
       </div>
     </div>
-  </div></div><div class="owl-item active" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24958" liked="0">
+  </div></div><div class="owl-item" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24958" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
         <div class="slider_product_img">
@@ -635,7 +635,7 @@
         <span class="price_conv_val_block"><span class="converted_val_span">18.20</span>&nbsp;<span class="price_currency">₴</span></span>
       </div>
     </div>
-  </div></div><div class="owl-item active" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24974" liked="0">
+  </div></div><div class="owl-item" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24974" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
         <div class="slider_product_img">
@@ -649,7 +649,7 @@
         <span class="price_conv_val_block"><span class="converted_val_span">128.80</span>&nbsp;<span class="price_currency">₴</span></span>
       </div>
     </div>
-  </div></div><div class="owl-item" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24973" liked="0">
+  </div></div><div class="owl-item active" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24973" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
         <div class="slider_product_img">
@@ -663,21 +663,7 @@
         <span class="price_conv_val_block"><span class="converted_val_span">100.24</span>&nbsp;<span class="price_currency">₴</span></span>
       </div>
     </div>
-  </div></div><div class="owl-item" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24975" liked="0">
-    <div class="slider_item">
-      <div class="slider_product_img_block">
-        <div class="slider_product_img">
-          <img src="./Каталог - jam-pay.com - Интернет магазин_files/00049477_sm.jpg" alt="">
-        </div>
-      </div>
-      <div class="slider_item_title">
-        <a href="https://jam-pay.com/ru/product/mukaltin_sirop_po_200_ml_vo_flakonah_485402_24975.html">Мукалтин сироп по 200 мл во флаконах (485402)</a>
-      </div>
-      <div class="slider_item_price">
-        <span class="price_conv_val_block"><span class="converted_val_span">84.00</span>&nbsp;<span class="price_currency">₴</span></span>
-      </div>
-    </div>
-  </div></div><div class="owl-item" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24971" liked="0">
+  </div></div><div class="owl-item active" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24971" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
         <div class="slider_product_img">
@@ -691,7 +677,21 @@
         <span class="price_conv_val_block"><span class="converted_val_span">2660004.00</span>&nbsp;<span class="price_currency">₴</span></span>
       </div>
     </div>
-  </div></div><div class="owl-item cloned" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24979" liked="0">
+  </div></div><div class="owl-item active" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24975" liked="0">
+    <div class="slider_item">
+      <div class="slider_product_img_block">
+        <div class="slider_product_img">
+          <img src="./Каталог - jam-pay.com - Интернет магазин_files/00049477_sm.jpg" alt="">
+        </div>
+      </div>
+      <div class="slider_item_title">
+        <a href="https://jam-pay.com/ru/product/mukaltin_sirop_po_200_ml_vo_flakonah_485402_24975.html">Мукалтин сироп по 200 мл во флаконах (485402)</a>
+      </div>
+      <div class="slider_item_price">
+        <span class="price_conv_val_block"><span class="converted_val_span">84.00</span>&nbsp;<span class="price_currency">₴</span></span>
+      </div>
+    </div>
+  </div></div><div class="owl-item cloned active" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24979" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
         <div class="slider_product_img">
@@ -705,7 +705,7 @@
         <span class="price_conv_val_block"><span class="converted_val_span">248000.00</span>&nbsp;<span class="price_currency">₴</span></span>
       </div>
     </div>
-  </div></div><div class="owl-item cloned" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24977" liked="0">
+  </div></div><div class="owl-item cloned active" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24977" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
         <div class="slider_product_img">
@@ -719,7 +719,7 @@
         <span class="price_conv_val_block"><span class="converted_val_span">1.68</span>&nbsp;<span class="price_currency">₴</span></span>
       </div>
     </div>
-  </div></div><div class="owl-item cloned" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24906" liked="0">
+  </div></div><div class="owl-item cloned active" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24906" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
         <div class="slider_product_img">
@@ -1803,7 +1803,7 @@
   
 
 
-      <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1279px, 0px, 0px); transition: all 1.5s ease 0s; width: 2987px;"><div class="owl-item cloned" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24977" liked="0">
+      <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1493px, 0px, 0px); transition: all 1.5s ease 0s; width: 2987px;"><div class="owl-item cloned" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24977" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
         <div class="slider_product_img">
@@ -1887,7 +1887,7 @@
         <span class="price_conv_val_block"><span class="converted_val_span">95.20</span>&nbsp;<span class="price_currency">₴</span></span>
       </div>
     </div>
-  </div></div><div class="owl-item active" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24977" liked="0">
+  </div></div><div class="owl-item" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24977" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
         <div class="slider_product_img">
@@ -1971,7 +1971,7 @@
         <span class="price_conv_val_block"><span class="converted_val_span">95.20</span>&nbsp;<span class="price_currency">₴</span></span>
       </div>
     </div>
-  </div></div><div class="owl-item cloned" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24977" liked="0">
+  </div></div><div class="owl-item cloned active" style="width: 183.333px; margin-right: 30px;"><div class="liked_prod_block product_slider_item" prod_id="24977" liked="0">
     <div class="slider_item">
       <div class="slider_product_img_block">
         <div class="slider_product_img">
@@ -2249,9 +2249,9 @@
           <div class="col-12 col-sm-6">
             <div id="contact_div" class="info">
               <h6>КОНТАКТЫ</h6>
-              <p>Jam Pay | Marketplace</p>
-              <p>пр. Гагарина, 4Б. Киев, Украина 50027 <br> Офис 503</p>
-              <p>Тел.: +38 09797 69696 / +38 05050 69696</p>
+              <p>JAM-PAY.COM | MARKETPLACE</p>
+              <p>ST. KHRESHCHATYK 27-A, KYIV, UKRAINE, 01001</p>
+              <p><a class="telto_footer" href="tel:+38 09797 69696 ">+38 09797 69696 </a>| <a class="telto_footer" href="tel:+38 05050 69696">+38 05050 69696</a></p>
               <div id="social_icon">
                   <a href="https://www.facebook.com/jampayofficial" target="_blank">
                       <img alt="img" src="./Каталог - jam-pay.com - Интернет магазин_files/iconfinder_facebook_fb_face_book_5340250 (1)_1.png">
@@ -2262,15 +2262,7 @@
                   <a href="https://www.youtube.com/jampay" target="_blank">
                       <img alt="img" src="./Каталог - jam-pay.com - Интернет магазин_files/iconfinder_youtube_youtuber_video_play_5340279_1.png">
                   </a>
-                  <a href="tel:+380979769696" data-content="+380979769696" data-type="phone" target="_blank">
-                      <img alt="img" src="./Каталог - jam-pay.com - Интернет магазин_files/iconfinder_wa_whatsapp_message_communication_chat_5340246_1.png">
-                  </a>
-                  <a href="skype:Skype_User1" target="_blank">
-                      <img alt="img" src="./Каталог - jam-pay.com - Интернет магазин_files/iconfinder_skype_conference_video_call_5340272_1.png">
-                  </a>
-                  <a href="tel:+380979769696" data-content="+380979769696" data-type="phone" target="_blank">
-                      <img alt="img" src="./Каталог - jam-pay.com - Интернет магазин_files/iconfinder_telegram_social_media_network_chat_5340247_1.png">
-                  </a>
+                  
               </div>
               <div id="cart_icon">
                   <img alt="img" src="./Каталог - jam-pay.com - Интернет магазин_files/iconfinder_363_Visa_Credit_Card_4518617_1.png">
@@ -2290,15 +2282,15 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-12">
+          <div class="col-12" style="position: reletive ;  margin-top:20px;" >
             <hr>
             <div id="faq" class="text-center">
-              <a href="https://jam-pay.com/service.html#faq">FAQ </a><span> | </span><a href="https://jam-pay.com/documents.html"> Политика конфиденциальности</a>
+              <a href="https://jam-pay.com/ru/s/service">FAQ </a><span> | </span><a href="https://jam-pay.com/documents.html"> Политика конфиденциальности</a>
             </div>
             <hr>
             <div class="text-center copyright by_gudmoonch" id="c" gm="gudmoonch@gmail.com" title="Powered by gudmoonch in 2019!">
               © 2019 Jam Pay. Все права защищены
-              <span id="client_elapsed_span" title="Page load time 0.295 seconds"><b>0.295</b>s</span>
+              <span id="client_elapsed_span" title="Page load time 0.208 seconds"> <b>0.208</b> s</span>
             </div>
           </div>
         </div>

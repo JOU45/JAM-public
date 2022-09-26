@@ -1,0 +1,236 @@
+$(document).ready(function () {
+  console.log('ffront ready started here!');
+  // check_last_client_acc_id_in_cookie();
+  if ($('.prod_variant_item_block.prod_qty_select_block #prod_qty_select').length > 0) prod_variant_changed();
+});
+
+function get_variants_ints_selected_in_select(elem) {
+  let $t = $(elem);
+  let sum_i64 = $t.val();
+  let result_arr = [];
+  if (parseInt(sum_i64) > 0) {
+    let vars_str = $t.children('[value="' + sum_i64 + '"]').attr('v_ids');
+    // console.log('get_variants_ints_selected_in_select elem=', elem, ' sum_i64=', sum_i64, ' val=', $t.val(), 'vars_str=', vars_str);
+    result_arr = vars_str.split(',').map(function (i) { return parseInt(i); }).filter(function(v) { return (v > 0); });
+  }
+  return result_arr;
+}
+
+function get_all_variants_ints_arr() { return Object.keys(PRODUCT_CARD_VARIANTS_JSON).map(function (i) { return parseInt(i); }); }
+function calc_variants_without_if_this_select_set_to_any(elem) {
+  let choosed_variants = get_all_variants_ints_arr();
+  $('.prod_variant_item_block[field_sum_val] select').each(function (i) {
+    let $t = $(this);
+    let item_sum = parseInt($(this).closest('.prod_variant_item_block').attr('field_sum_val'));
+    let elem_sum = parseInt($(elem).closest('.prod_variant_item_block').attr('field_sum_val'));
+    if (!(item_sum == elem_sum)) {
+      let variants = get_variants_ints_selected_in_select($t[0]);
+      if (variants.length > 0) {
+        choosed_variants = choosed_variants.filter(function(v) { return (variants.indexOf(v) >= 0); });
+      }
+    }
+  });
+  return choosed_variants;
+}
+
+function add_or_remove_disabled_attrs_to_variants_selects() {
+  $('.prod_variant_item_block[field_sum_val] select').each(function (i) {
+    let $t = $(this);
+    let without_this_variants = calc_variants_without_if_this_select_set_to_any(this);
+    if (without_this_variants.length > 0) {
+      $t.children('option').each(function (i2) {
+        let $ch = $(this);
+        // console.log('tmp1111111');
+        let variants = $ch.attr('v_ids').split(',').map(function (i) { return parseInt(i); }).filter(function(v) { return (v > 0); });
+        // console.log('tmp1111112 variants=', variants);
+        if (variants.length > 0) {
+          let found = without_this_variants.some(function (v) { return (variants.indexOf(v) >= 0); });
+          if (found) {
+            $ch.removeAttr('disabled');
+          } else {
+            $ch.attr('disabled', 'disabled');
+          }
+        }
+      });
+    };
+  });
+  return true;
+}
+
+function redraw_choosed_variants_rows() {
+  $('.prod_variant_item_block[field_sum_val] select').each(function (i) {
+    let $t = $(this);
+    let $d = $t.closest('.prod_variant_item_block');
+    let fsum = parseInt($d.attr('field_sum_val'));
+    // let val = $t.val();
+    let val_int = parseInt($t.val());
+    // console.log('redraw_choosed_variants_rows val_int=', val_int);
+    let $op = $t.children('option[value="' + val_int + '"]');
+    let val_str = $op.html();
+    let $inp = $('.choosed_variant_row[variant_field_sum="' + fsum + '"]');
+    $inp.find('.choosed_val').text(val_str);
+  });
+  return true;
+}
+
+function get_choosed_variants_arr() {
+  let choosed_variants = get_all_variants_ints_arr();
+  // console.log('prod_variant_changed choosed_variants1=', choosed_variants);
+  $('.prod_variant_item_block[field_sum_val] select').each(function (i) {
+    let $t = $(this);
+    let sum_i64 = parseInt($t.val());
+    if (sum_i64 > 0) {
+      let variants = get_variants_ints_selected_in_select($t[0]);
+      if (variants.length > 0) {
+        choosed_variants = choosed_variants.filter(function(v) { return (variants.indexOf(v) >= 0); });
+        // console.log('prod_variant_changed variants=', variants);
+      }
+    }
+  });
+  if (!(choosed_variants.length > 0)) {
+    // console.error("Wrong choosed_variants. choosed_variants=", choosed_variants);
+  }
+  return choosed_variants;
+}
+
+function redraw_prod_selected_qty() {
+  let choosed_variants = get_choosed_variants_arr();
+  console.log('redraw_prod_selected_qty started choosed_variants=', choosed_variants);
+  let $d = $('.prod_qty_select_block');
+  let max_choosed_variants_qty = 0;
+  let found_any_qty = false;
+  choosed_variants.forEach(function(v_id) {
+    if (PRODUCT_CARD_VARIANTS_JSON[v_id]['f'] > 0) {
+      max_choosed_variants_qty = max_choosed_variants_qty + parseInt(PRODUCT_CARD_VARIANTS_JSON[v_id]['q']);
+    } else {
+      found_any_qty = true;
+    }
+  });
+  if (found_any_qty || (!(choosed_variants.length > 0))) max_choosed_variants_qty = parseInt($d.attr('max_prod_qty'));
+  $d.attr('max_prod_qty_choosed', max_choosed_variants_qty);
+  console.log('redraw_prod_selected_qty max_choosed_variants_qty=', max_choosed_variants_qty);
+  let $qselect = $d.find('select');
+  let cur_val = parseInt($qselect.val());
+  if ((cur_val > 1) && (cur_val > max_choosed_variants_qty)) {
+    $qselect.val(1);
+    cur_val = 1;
+  }
+  $d.attr('old_selected', cur_val);
+  let $prev_op = $qselect.children('option.fir_prod_qty_opt[value="1"]');
+  let accepted_arr = JSON.parse($d.attr('accepted_vals'));
+  accepted_arr.forEach(function(op_val) {
+    op_val = parseInt(op_val);
+    let $op = $qselect.children('option.one_prod_qty_opt[value="' + op_val + '"]');
+    if (op_val > max_choosed_variants_qty) {
+      if ($op.length > 0) $op.remove();
+    } else {
+      if ($op.length > 0) {
+        $prev_op = $op;
+      } else {
+        let $new_op = $("<option class='one_prod_qty_opt' value='" + op_val + "'>" + op_val + "</option>");
+        $new_op.insertAfter($prev_op);
+        $prev_op = $new_op;
+      }
+    }
+  });
+  let $man2 = $qselect.find('.manual_qty_opt');
+  if (max_choosed_variants_qty > 6) {
+    if (!($man2.length > 0)) {
+      let $new_op = $("<option class='manual_qty_opt' value='manual'>Ввести вручную</option>");
+      $new_op.insertAfter($prev_op);
+    }
+  } else {
+    $man2.remove();
+  }
+
+  $qselect.children('option').each(function (i) {
+    let $op = $(this);
+    let op_val = parseInt($op.attr('value'));
+    if ($op.hasClass('max_prod_qty_opt')) {
+      $op.attr('value', max_choosed_variants_qty);
+      $op.html('Все (' + max_choosed_variants_qty + ')');
+    } else {
+      // if ($op.hasClass('set_prod_qty_opt')) {
+
+      // }
+      // if ($op.hasClass('set_prod_qty_opt')) {
+
+      // } else {
+      //   if ((op_val > 1) && (op_val > max_choosed_variants_qty)) {
+      //     $op.attr('style', 'display: none;');
+      //   } else {
+      //     $op.removeAttr('style');
+      //   }
+      // }
+    }
+  });
+
+  // let $inp = $('.choosed_item_row input[name="qty"]');
+  // console.log('tmp asasd inp=', $inp, " choosed", $inp.closest('.choosed_item_row').find('.choosed_val'));
+  $('.prod_qty_choosed_block').find('.choosed_val').html($qselect.val());
+  $('.available.small-text span').html(max_choosed_variants_qty + ' в наличии');
+}
+
+function prod_variant_changed() {
+  // console.log('prod_variant_changed started');
+  add_or_remove_disabled_attrs_to_variants_selects();
+  redraw_choosed_variants_rows();
+  redraw_prod_selected_qty();
+  return true;
+}
+
+function prod_qty_changed(elem) {
+  console.log('prod_qty_changed started');
+  let cur_val = $(elem).val();
+  if (cur_val == 'manual') {
+    let $d = $(elem).closest('.prod_qty_select_block');
+    $(elem).val($d.attr('old_selected'));
+    return show_select_manual_qty_modal(elem);
+  }
+  redraw_prod_selected_qty();
+}
+
+
+function show_select_manual_qty_modal(elem) {
+  let $qsel_block = $(elem).closest('.prod_qty_select_block');
+  let max_val = parseInt($qsel_block.attr('max_prod_qty'));
+  show_in_modal_link
+  let modal_id = 'select_manual_qty_modal_id';
+  if (!($('#' + modal_id).length > 0)) $('body').append($(empty_modal_html(modal_id, 'select_manual_qty_modal_class')));
+  let $d = $('#' + modal_id);
+  let data = {};
+  $d.attr('modal_data', JSON.stringify(data));
+  $d.modal('show');
+  let url = '/ru/get_select_manual_qty_modal?prod_id=' + $qsel_block.attr('prod_id') + '&cur_val=' + $qsel_block.attr('old_selected') + '&max_val=' + $qsel_block.attr('max_prod_qty_choosed');
+  fill_modal_from_url($d[0], url, data);
+  return false;
+}
+
+function change_qty_for_prod_and_close_modal(elem, prod_id, max_val) {
+  let $qsel_block = $('.prod_qty_select_block[prod_id="' + prod_id + '"]');
+  let $sel = $qsel_block.find('select');
+  let $d = $(elem).closest('.cart_prod_edit_form');
+  let new_val = parseInt($d.find('.modal_qty_changer').val().trim());
+  let errs = '';
+  if (!(new_val > 0)) errs = 'Выберите значение больше нуля';
+  if (!(new_val <= max_val)) errs = 'Выберите значение меньше ' + max_val;
+  $d.find('.client_prod_manual_qty_edit_errs').text(errs);
+  console.log('change_qty_for_prod_and_close_modal started. prod_id=', prod_id, ' max_val=', max_val);
+  if (errs.length > 0) {
+
+  } else {
+    if (!($sel.find('option[value="' + new_val + '"]').length > 0)) {
+      let $man2 = $sel.find('option.manual_qty_opt');
+      let $new_op = $("<option class='one_prod_qty_opt' value='" + new_val + "'>" + new_val + "</option>");
+      $new_op.insertBefore($man2);
+      let accepted_arr = JSON.parse($qsel_block.attr('accepted_vals'));
+      accepted_arr.push(parseInt(new_val));
+      $qsel_block.attr('accepted_vals', JSON.stringify(accepted_arr));
+    }
+    $qsel_block.attr('old_selected', new_val);
+    $sel.val(new_val);
+    console.log('choosed success new_val=', new_val);
+    $d.closest('.modal').modal('hide');
+  }
+  return false;
+}

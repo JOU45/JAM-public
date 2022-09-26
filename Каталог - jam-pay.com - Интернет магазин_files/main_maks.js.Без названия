@@ -1,0 +1,156 @@
+
+$(document).ready(function() {
+
+  $('.card-slider-top').bxSlider({
+    speed: 300,
+    controls: false,
+    pagerCustom: '#bx-pager'
+  });
+
+  $('.first_slider').owlCarousel({
+    dots: false,
+    nav: false,
+    loop: true,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplaySpeed: 1500,
+    center: true,
+    items: 1
+  });
+  $('.second_slider_right').owlCarousel({
+    dots: false,
+    loop: true,
+    autoplay: true,
+    autoplayTimeout: 3500,
+    autoplaySpeed: 1500,
+    margin: 20,
+    responsive : {
+      0 : {
+        items: 3
+      },
+      768 : {
+        items: 4
+      },
+      992 : {
+        items: 5
+      }
+    }
+  });
+  $('.second_slider_left').owlCarousel({
+    rtl:true,
+    dots: false,
+    loop: true,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplaySpeed: 1500,
+    margin: 20,
+    responsive : {
+      0 : {
+        items: 3
+      },
+      768 : {
+        items: 4
+      },
+      992 : {
+        items: 5
+      }
+    }
+  });
+  // $("#secondSliderNext").click(function(){
+  //   $(".second_slider").trigger('next.owl.carousel', [500]);
+  // })
+  // $("#secondSliderPrev").click(function(){
+  //     $(".second_slider").trigger('prev.owl.carousel', [500]);
+  // })
+
+  $('.third_slider').owlCarousel({
+    dots: false,
+    nav: false,
+    loop: true,
+    autoplay: true,
+    autoplayTimeout: 3800,
+    autoplaySpeed: 1500,
+    margin: 30,
+    responsive : {
+      0 : {
+        items: 3
+      },
+      768 : {
+        items: 4
+      },
+      992 : {
+        items: 6
+      }
+    }
+  });
+  $('.fourth_slider').owlCarousel({
+    rtl:true,
+    dots: false,
+    nav: false,
+    loop: true,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplaySpeed: 1300,
+    margin: 30,
+    responsive : {
+      0 : {
+        items: 3
+      },
+      768 : {
+        items: 4
+      },
+      992 : {
+        items: 6
+      }
+    }
+  });
+  $('.fifth_slider').owlCarousel({
+    dots: false,
+    nav: false,
+    loop: true,
+    autoplay: true,
+    autoplayTimeout: 3500,
+    autoplaySpeed: 1300,
+    margin: 30,
+    responsive : {
+      0 : {
+        items: 3
+      },
+      768 : {
+        items: 4
+      },
+      992 : {
+        items: 6
+      }
+    }
+  });
+
+});
+
+
+// function empty_modal_html(modal_id) {
+//   return '<div class="modal select_model_link_modal fade" id="' + modal_id + '" tabindex="-1" role="dialog" aria-labelledby="change_model_link_id" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalLabel">Загрузка данных...</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"/></div></div></div>';
+// }
+
+// function show_client_page_in_modal(elem, modal_class_name) {
+//   if (!(modal_class_name)) modal_class_name = 'custom_modal_class_name';
+//   let url = new URL($(elem).attr('href'), document.location.protocol + '//' + document.location.host);
+//   let link_href = url.pathname;
+//   let $callback_func = $(elem).closest('.frame_callback_need');
+//   let modal_id = 'modal_' + link_href.replace(/[^a-zA-Z0-9_]/gi, '_');
+//   if (!($('#' + modal_id).length > 0)) $('body').append($(empty_modal_html(modal_id)));
+//   let $d = $('#' + modal_id);
+//   if (!($d.hasClass(modal_class_name))) $d.addClass(modal_class_name);
+//   if (($callback_func) && ($callback_func.length > 0)) {
+//     $d.attr('callback_function', $callback_func.attr('callback_function'));
+//     $d.attr('callback_params',   $callback_func.attr('callback_params') || '{}');
+//   }
+//   $d.attr('params', JSON.stringify(params));
+//   console.log('show_client_page_in_modal modal_id=', modal_id, 'url=', url);
+//   $d.modal('show');
+//   $d.draggable({ handle: ".modal-header" });
+
+
+//   return false;
+// }
+

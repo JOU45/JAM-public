@@ -1,0 +1,387 @@
+
+function payment_type_dropdown_item_clicked(elem) {
+  console.log('payment_type_dropdown_item_clicked runned');
+  // event.stopPropagation();
+  event.preventDefault();
+  var $t = $(elem);
+  var v = $t.attr('val');
+  var vid = parseInt($t.attr('vid'));
+  var text = $t.text();
+
+  var $d = $t.closest('.dropdown');
+  var d_id = $d.attr('prop_name');
+  $d.find('.dropdown_btn').text(text).attr('val', v).attr('vid', vid);
+  var $hh = $('.dropdown_hidden_val[name="' + d_id + '"]');
+  $hh.val(vid);
+  $t.closest('.dropdowns_form_element').attr(d_id, v);
+  $t.closest('.cart_pds_modal').attr(d_id, v);
+
+  return false;
+}
+
+function cart_form_to_params(form) {
+  var result = {};
+  var arr = $(form).serializeArray();
+  arr.forEach(function(el) {
+    result[el['name']] = ((result[el['name']]) ? result[el['name']] + ',' : '') + el['value'];
+  });
+  return result;
+}
+
+function cart_update_delivery(elem) {
+  // return true;
+  event.stopPropagation();
+  event.preventDefault();
+  // console.log('cart_update_delivery runned');
+  var $m = $(elem).closest('.modal');
+  var $f = $(elem).closest('form');
+  var url = $f.attr('action');
+  var params = cart_form_to_params($f[0]);
+  params['ajax_post'] = 1;
+  var $result_block = $(elem).closest('.modal').find('.errors_block_html');
+  $.ajax({ type: "POST", cache: false, url: url, data: params, success: function(data) {
+    // console.log('cart_update_delivery success. data=', data);
+    var res = {};
+    var result_html = '';
+    try {
+      res = JSON.parse(data);
+      if (res.result > 0) {
+        // console.log('cart_update_delivery success. res=', res);
+        if (res.cab_id > 0) {
+          $('.cabinet_cart_block[cart_id="' + res.cart_id + '"][cabinet_id="' + res.cab_id + '"]').html(res.cab_cart_html);
+          $('.prepeare_order_block[cart_id="' + res.cart_id + '"][cabinet_id="' + res.cab_id + '"]').html(res.prepeare_order_block_html);
+        } else {
+          $('.cart_cab_settings_item_html[cpds_id="' + res.id + '"]').html(res.cart_cab_settings_item_html);
+        }
+
+        // $('.cart_cab_settings_item_html[cas_id="' + res.id + '"]').html(res.cart_cab_settings_item_html);
+        $m.modal('hide');
+        return false;
+      } else {
+        result_html = res.errs_html
+      }
+    } catch (e) {
+      console.error('Error in cart_update_delivery. data=', data);
+      result_html = '<h1>ERROR 100500 in cart_update_delivery!</h1><br/>data=[' + data + ']';
+    }
+    $result_block.html(result_html);
+    return false;
+  }, error: function(data) { $result_block.html('ERROR. data=[' + data + ']'); } });
+
+  return false;
+}
+
+function filter_input_keydown(elem) {
+  // event.stopPropagation();
+  // event.preventDefault();
+  return true;
+}
+
+function filter_input_keyup(elem) {
+  // event.stopPropagation();
+  // event.preventDefault();
+  console.log('filter_input_keyup started');
+  $(elem).parent().find('.search_icon').click();
+  // return false;
+}
+
+function filter_cities(elem) {
+  event.stopPropagation();
+  event.preventDefault();
+  var $dm = $(elem).closest('.dropdown-menu');
+  var $d = $dm.closest('.dropdown');
+  var $list_block = $dm.find('.search_items_block');
+  $list_block.html('');
+  var $m = $dm.closest('.modal');
+  var $result_block = $m.find('.errors_block_html');
+  $result_block.html('');
+  var new_search_word = $dm.find('.dropdown_search_input').val();
+  $.ajax({ type: "GET", cache: false, url: $d.attr('filter_url'), data: { sword: new_search_word }, success: function(data) {
+    // console.log('filter_cities success data=', data);
+    var json_obj = JSON.parse(data);
+    // console.log('filter_cities success json_obj=', json_obj);
+    $list_block.html(json_obj.lookup_list_html);
+  }, error: function(data) {
+    console.error('filter_cities fail load data=', data);
+    $result_block.html('ERROR. data=[' + data + ']');
+  } });
+}
+
+function filter_search(elem) {
+  event.stopPropagation();
+  event.preventDefault();
+  var $dm = $(elem).closest('.dropdown-menu');
+  var $d = $dm.closest('.dropdown');
+  var $list_block = $dm.find('.search_items_block');
+  $list_block.html('');
+  var $m = $dm.closest('.modal');
+  var $result_block;
+  if ($m.length > 0) {
+    $result_block = $m.find('.modal_flash_html_block');
+  } else {
+    $m = $dm.closest('body');
+    $result_block = $m.find('.flash_html_main_block');
+  }
+
+  $result_block.html('');
+  var new_search_word = $dm.find('.dropdown_search_input').val();
+  var send_data_obj = $d.data();
+  send_data_obj["delivery_type_id"] = parseInt($m.find('input[name="delivery_type_id"]').attr('value'));
+  send_data_obj["cities_id"]        = parseInt($m.find('input[name="cities_id"]').attr('value'));
+  $.ajax({ type: "GET", cache: false, url: $d.attr('filter_url'), data: { sword: new_search_word, d: JSON.stringify(send_data_obj) }, success: function(data) {
+    // console.log('filter_search success data=', data);
+    var json_obj = JSON.parse(data);
+    // console.log('filter_search success json_obj=', json_obj);
+    $list_block.html(json_obj.lookup_list_html);
+  }, error: function(data) {
+    console.error('filter_search fail load data=', data);
+    $result_block.html('ERROR. data=[' + data + ']');
+  } });
+}
+
+function search_item_clicked(elem) {
+  event.stopPropagation();
+  event.preventDefault();
+  let $cdb = $(elem).closest('.choose_delivery_block');
+  let $dd = $(elem).closest('.dropdown');
+  var f_name = $dd.data().pname;
+  var c_name = $(elem).html();
+  console.log('search_item_clicked f_name=', f_name);
+  var vid = parseInt($(elem).attr('vid'));
+  $dd.find('.dropdown_btn').html(c_name);
+  var $hh = $('.dropdown_hidden_val[name="'+ f_name + '"]');
+  $hh.val(vid);
+  if (f_name == 'cities_id') {
+    let $wd = $cdb.find('.warehouse_sel_dropdown');
+    var $winp = $wd.find('.dropdown_search_input');
+    $wd.find('.dropdown_btn').text('Выбор склада');
+    $cdb.find('.dropdown_hidden_val[name="cities_warehouses_id"]').val(0);
+    $winp.val('');
+    filter_warehouses($winp[0]);
+
+    let $cs_d = $cdb.find('.cities_streets_sel_dropdown');
+    var $sinp = $cs_d.find('.dropdown_search_input');
+    $cs_d.find('.dropdown_btn').text('Выбор улицы');
+    $cdb.find('.dropdown_hidden_val[name="cities_streets_id"]').val(0);
+    $sinp.val('');
+    filter_search($sinp[0]);
+  }
+  if (f_name == 'cities_streets_id') {
+
+  }
+  $dd.find("[data-toggle='dropdown']").dropdown("toggle");
+  return false;
+}
+
+function filter_warehouses(elem) {
+  // event.stopPropagation();
+  event.preventDefault();
+  var $dm = $(elem).closest('.dropdown-menu');
+  var $d = $dm.closest('.dropdown');
+  var $list_block = $dm.find('.search_items_block');
+  $list_block.html('');
+  var $m = $dm.closest('.modal');
+  var $result_block = $m.find('.errors_block_html');
+  $result_block.html('');
+  var new_search_word = $dm.find('.dropdown_search_input').val();
+  var cities_id = $('.dropdown_hidden_val[name="cities_id"]').val();
+  $.ajax({ type: "GET", cache: false, url: $d.attr('filter_url'), data: { cities_id: cities_id, sword: new_search_word }, success: function(data) {
+    // console.log('filter_warehouses success data=', data);
+    var json_obj = JSON.parse(data);
+    // console.log('filter_warehouses success json_obj=', json_obj);
+    $list_block.html(json_obj.lookup_list_html);
+  }, error: function(data) {
+    console.error('filter_warehouses fail load data=', data);
+    $result_block.html('ERROR. data=[' + data + ']');
+  } });
+}
+
+function search_warehouse_item_clicked(elem) {
+  var $d = $(elem).closest('.dropdown');
+  var w_name = $(elem).find('.wname').text();
+  var vid = parseInt($(elem).attr('vid'));
+  $d.find('.dropdown_btn').text(w_name);
+  var $hh = $('.dropdown_hidden_val[name="cities_warehouses_id"]');
+  $hh.val(vid);
+  return false;
+}
+
+function fill_data_from_this_pds(elem) {
+  event.stopPropagation();
+  event.preventDefault();
+  console.log('fill_data_from_this_pds started');
+}
+
+
+$(document).on('show.bs.modal', '.modal', function () {
+    var zIndex = 1040 + (10 * $('.modal:visible').length);
+    $(this).css('z-index', zIndex);
+    setTimeout(function() {
+        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+    }, 0);
+});
+
+$(document).on('hidden.bs.modal', '.modal', function () {
+    $('.modal:visible').length && $(document.body).addClass('modal-open');
+});
+
+function cart_prod_edit_modal_set_prod_cnt(elem, cnt) {
+  $(elem).closest('form').find('input.modal_qty_changer').val(cnt);
+}
+
+
+/* ================================================================ START COUPON REQUESTS ========================================================= */
+
+$(document).ready(function () {
+  console.log('ffront ready started here!');
+  // check_last_client_acc_id_in_cookie();
+  if ($('.cr_prod_variant_item_block.cr_prod_qty_select_block #cr_prod_qty_select').length > 0) cr_prod_variant_changed();
+});
+
+function cr_get_variants_ints_selected_in_select(elem) {
+  let $t = $(elem);
+  let sum_i64 = parseInt($t.val());
+  let result_arr = [];
+  if (sum_i64 > 0) {
+    let vars_str = $t.children('[value="' + sum_i64 + '"]').attr('v_ids');
+    result_arr = vars_str.split(',').map(function (i) { return parseInt(i); }).filter(function(v) { return (v > 0); });
+  }
+  return result_arr;
+}
+
+function cr_get_all_variants_ints_arr() { return Object.keys(CR_PRODUCT_CARD_VARIANTS_JSON).map(function (i) { return parseInt(i); }); }
+function cr_calc_variants_without_if_this_select_set_to_any(elem) {
+  let choosed_variants = cr_get_all_variants_ints_arr();
+  $('.cr_prod_variant_item_block[field_sum_val] select').each(function (i) {
+    let $t = $(this);
+    let item_sum = parseInt($(this).closest('.cr_prod_variant_item_block').attr('field_sum_val'));
+    let elem_sum = parseInt($(elem).closest('.cr_prod_variant_item_block').attr('field_sum_val'));
+    if (!(item_sum == elem_sum)) {
+      let variants = cr_get_variants_ints_selected_in_select($t[0]);
+      if (variants.length > 0) {
+        choosed_variants = choosed_variants.filter(function(v) { return (variants.indexOf(v) >= 0); });
+      }
+    }
+  });
+  return choosed_variants;
+}
+
+function cr_add_or_remove_disabled_attrs_to_variants_selects() {
+  $('.cr_prod_variant_item_block[field_sum_val] select').each(function (i) {
+    let $t = $(this);
+    let without_this_variants = cr_calc_variants_without_if_this_select_set_to_any(this);
+    if (without_this_variants.length > 0) {
+      $t.children('option').each(function (i2) {
+        let $ch = $(this);
+        let variants = $ch.attr('v_ids').split(',').map(function (i) { return parseInt(i); }).filter(function(v) { return (v > 0); });
+        if (variants.length > 0) {
+          let found = without_this_variants.some(function (v) { return (variants.indexOf(v) >= 0); });
+          if (found) {
+            $ch.removeAttr('disabled');
+          } else {
+            $ch.attr('disabled', 'disabled');
+          }
+        }
+      });
+    };
+  });
+  return true;
+}
+
+function cr_redraw_choosed_variants_rows() {
+  $('.cr_prod_variant_item_block[field_sum_val] select').each(function (i) {
+    let $t = $(this);
+    let $d = $t.closest('.cr_prod_variant_item_block');
+    let fsum = parseInt($d.attr('field_sum_val'));
+    // let val = $t.val();
+    let val_int = parseInt($t.val());
+    // console.log('cr_redraw_choosed_variants_rows val_int=', val_int);
+    let $op = $t.children('option[value="' + val_int + '"]');
+    let val_str = $op.html();
+    // let $inp = $('.choosed_variant_row[variant_field_sum="' + fsum + '"]');
+    // $inp.find('.choosed_val').text(val_str);
+  });
+  return true;
+}
+
+function cr_get_choosed_variants_arr() {
+  let choosed_variants = cr_get_all_variants_ints_arr();
+  // console.log('prod_variant_changed choosed_variants1=', choosed_variants);
+  $('.cr_prod_variant_item_block[field_sum_val] select').each(function (i) {
+    let $t = $(this);
+    let sum_i64 = parseInt($t.val());
+    if (sum_i64 > 0) {
+      let variants = cr_get_variants_ints_selected_in_select($t[0]);
+      if (variants.length > 0) {
+        choosed_variants = choosed_variants.filter(function(v) { return (variants.indexOf(v) >= 0); });
+        // console.log('prod_variant_changed variants=', variants);
+      }
+    }
+  });
+  if (!(choosed_variants.length > 0)) {
+    // console.error("Wrong choosed_variants. choosed_variants=", choosed_variants);
+  }
+  return choosed_variants;
+}
+
+function cr_redraw_prod_selected_qty() {
+  let choosed_variants = cr_get_choosed_variants_arr();
+  console.log('redraw_prod_selected_qty started choosed_variants=', choosed_variants);
+  let $d = $('.cr_choosed_variants_rows');
+  let max_choosed_variants_qty = 0;
+  let found_any_qty = false;
+  choosed_variants.forEach(function(v_id) {
+    if (CR_PRODUCT_CARD_VARIANTS_JSON[v_id]['f'] > 0) {
+      max_choosed_variants_qty = max_choosed_variants_qty + parseInt(CR_PRODUCT_CARD_VARIANTS_JSON[v_id]['q']);
+    } else {
+      found_any_qty = true;
+    }
+  });
+  if (found_any_qty || (!(choosed_variants.length > 0))) max_choosed_variants_qty = parseInt($d.attr('max_prod_qty'));
+  console.log('cr_redraw_prod_selected_qty max_choosed_variants_qty=', max_choosed_variants_qty);
+  let $qty_inp = $('.cr_edit_qty_input');
+  let cur_val = parseInt($qty_inp.val());
+  // let $qselect = $d.find('select');
+  // let cur_val = parseInt($qselect.val());
+  if ((cur_val > 1) && (cur_val > max_choosed_variants_qty)) {
+    $qty_inp.val(1);
+    cur_val = 1;
+  }
+
+  // $qselect.children('option').each(function (i) {
+  //   let $op = $(this);
+  //   let op_val = parseInt($op.attr('value'));
+  //   if ($op.hasClass('max_prod_qty_opt')) {
+  //     $op.attr('value', max_choosed_variants_qty);
+  //     $op.html('Все (' + max_choosed_variants_qty + ')');
+  //   } else {
+  //     if ((op_val > 1) && (op_val > max_choosed_variants_qty)) {
+  //       $op.attr('style', 'display: none;');
+  //     } else {
+  //       $op.removeAttr('style');
+  //     }
+  //   }
+  // });
+
+  // let $inp = $('.choosed_item_row input[name="qty"]');
+  // console.log('tmp asasd inp=', $inp, " choosed", $inp.closest('.choosed_item_row').find('.choosed_val'));
+  $('.cr_available_block.small-text span').html(max_choosed_variants_qty + ' в наличии');
+}
+
+function cr_prod_variant_changed() {
+  // console.log('prod_variant_changed started');
+  cr_add_or_remove_disabled_attrs_to_variants_selects();
+  cr_redraw_choosed_variants_rows();
+  cr_redraw_prod_selected_qty();
+  return true;
+}
+
+function cr_prod_qty_changed() {
+  // console.log('prod_qty_changed started');
+  cr_redraw_prod_selected_qty();
+}
+
+
+
+/* ========================================================================== END COUPON REQUESTS ============================================ */
+
