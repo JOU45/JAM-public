@@ -1,44 +1,54 @@
-.modal-title.modal-title-change-color{
-    color:white !important;
+.modal-title.modal-title-change-color {
+  color: white !important;
 }
-a{
-    transition: 0.1s;
-    color:white;
+a {
+  transition: 0.1s;
+  color: white;
 }
-.brand_nav.flex.correcter-640px>a:hover{
-    
-    text-decoration: none;
+
+/* Дефисы в названиях класса очень неудобная дичька.
+   В основном дефисы надо юзать только для группового назначения.
+   Вместо [-] в названии класса лучше использовать [_].
+   Так и двойным кликом легче выделять такой класс, и ты понимаешь что этот класс уникален.
+   Всякие фреймворки типа бутстрапа юзают описание для классов [col-*] и дефис тут служит как обозначение того, что класс состоит из кусков.
+   В общем если в трёх словах то "Не желательно использование дефиса в названиях класса".
+   Старайся без нужды дефисы не юзать вообще нигде в названиях классов/переменных. */
+.brand_nav.flex.correcter-640px > a:hover {
+  text-decoration: none;
 }
-a:hover{
-    color:#565656;
+
+/* Так низя делать без крайней надобности. Это называется "обнуляторы".
+   Желательно ознакомиться с тем что такое "обнуляторы в вёрстке и как они прменяются и когда" */
+a:hover {
+  color: #565656;
 }
-.button_submit_linza{
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    top: -2px;
-    left: 30%;
+.button_submit_linza {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: -2px;
+  left: 30%;
 }
-.close>svg{
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    top: 20%;
-    left: 96%;
+.close > svg {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 20%;
+  left: 96%;
 }
-@media (min-width:600px) and (max-width:1000px){
-    .brand_nav.flex.correcter-640px>a{
-        padding: 2px;
-    }
-    .close>svg{
-        left: 94%;
-    }
+@media (min-width:600px) and (max-width:1000px) {
+  .brand_nav.flex.correcter-640px > a {
+    padding: 2px;
+  }
+  .close > svg {
+    left: 94%;
+  }
 }
-@media (max-width:600px){
-    .brand_nav.flex.correcter-640px>a{
-        padding: 2px;
-    }
-    .close>svg{
-        left: 92%;
-    }
+@media (max-width:600px) {
+  .brand_nav.flex.correcter-640px > a {
+    padding: 2px;
+  }
+  .close > svg {
+    left: 92%;
+  }
 }
